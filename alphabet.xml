@@ -1,0 +1,215 @@
+<metadata
+   chrWidth="4"
+   chrHeight="6"
+   hPadding="2"
+   vPadding="2"
+   gridWidth="8"
+   scale="20"
+   style="fill:none;stroke:black;stroke-width:4"
+/>
+
+<char id="A" d="
+M 0 6
+L 0 2
+Q 0 0 2 0
+Q 4 0 4 2
+L 4 6 
+M 0 4
+L 4 4" />
+
+<char id="B" d="
+M 0 0
+L 2 0
+Q 3 0 3 1
+Q 3 2 2 2
+Q 4 2 4 4
+Q 4 6 2 6
+L 0 6
+L 0 0
+M 0 2
+L 2 2"  />
+
+<char id="C" d="
+M 4 2
+Q 4 0 2 0
+Q 0 0 0 2
+L 0 4
+Q 0 6 2 6
+Q 4 6 4 4"  />
+
+<char id="D" d="
+M 0 0
+L 2 0
+Q 4 0 4 2
+L 4 4 
+Q 4 6 2 6
+L 0 6
+L 0 0"  />
+
+<char id="E" d="
+M 4 0
+L 0 0 
+L 0 6
+L 4 6
+M 0 4
+L 2 4"  />
+
+<char id="F" d="
+M 4 0
+L 0 0
+L 0 6
+M 0 4
+L 2 4"  />
+
+<char id="G" d="
+M 4 2
+Q 4 0 2 0
+Q 0 0 0 2
+L 0 4
+Q 0 6 2 6
+Q 4 6 4 4
+L 2 4
+"  />
+
+<char id="H" d="
+M 0 0
+L 0 6
+M 0 4
+L 4 4
+M 4 0
+L 4 6"  />
+
+<char id="I" d="
+M 0 0
+L 4 0
+M 2 0
+L 2 6
+M 0 6
+L 4 6"  />
+
+<char id="J" d="
+M 0 0
+L 4 0
+L 4 4 
+Q 4 6 2 6
+Q 0 6 0 4"  />
+
+<char id="K" d="
+M 0 0
+L 0 6
+M 0 2
+L 2 2
+Q 4 2 4 4
+L 4 6
+M 2 2
+L 4 0"  />
+
+<char id="L" d="
+M 0 0
+L 0 6
+L 4 6"  />
+
+<char id="M" d="
+M 0 6
+L 0 0
+L 2 2
+L 4 0
+L 4 6"  />
+
+<char id="N" d="
+M 0 6
+L 0 0
+L 4 6
+L 4 0"  />
+
+<char id="O" d="
+M 0 2
+Q 0 0 2 0
+Q 4 0 4 2
+L 4 4
+Q 4 6 2 6
+Q 0 6 0 4
+L 0 2"  />
+
+<char id="P" d="
+M 0 6
+L 0 0
+L 2 0
+Q 4 0 4 2
+Q 4 4 2 4
+L 0 4"  />
+
+<char id="Q" d="
+M 0 2
+Q 0 0 2 0
+Q 4 0 4 2
+L 4 4
+Q 4 6 2 6
+Q 0 6 0 4
+L 0 2
+M 2 4
+L 4 6"  />
+
+<char id="R" d="
+M 0 6
+L 0 0
+L 2 0
+Q 4 0 4 2
+Q 4 4 2 4
+L 0 4
+M 2 4
+L 4 6"  />
+
+<char id="S" d="
+M 0 4
+Q 0 6 2 6
+Q 4 6 4 4
+Q 4 3 3 3
+L 1 3
+Q 0 3 0 2
+Q 0 0 2 0
+Q 4 0 4 2"  />
+
+<char id="T" d="
+M 2 6
+L 2 0
+M 0 0 
+L 4 0"  />
+
+<char id="U" d="
+M 0 0
+L 0 4
+Q 0 6 2 6
+Q 4 6 4 4
+L 4 0"  />
+
+<char id="V" d="
+M 0 0
+L 2 6
+L 4 0"  />
+
+<char id="W" d="
+M 0 0
+L 0 6
+L 2 4
+L 4 6
+L 4 0"  />
+
+<char id="X" d="
+M 0 0
+L 4 6
+M 4 0
+L 0 6"  />
+
+<char id="Y" d="
+M 0 0
+L 2 4
+L 4 0
+M 2 4
+L 2 6"  />
+
+<char id="Z" d="
+M 0 0
+L 4 0
+L 0 6
+L 4 6"  />

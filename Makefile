@@ -1,9 +1,14 @@
+SVG_COMPILER = ./svgcompile.py
+SVG_OUTFILE = alphabet.svg
+SVG_SOURCEFILE = alphabet.xml
+
+
 .PHONY: all clean
 
-all: alphabet.svg
+all: $(SVG_OUTFILE)
 
 clean:
-	rm alphabet.svg
+	-rm $(SVG_OUTFILE)
 
-alphabet.svg: alphabet.a
-	./svgcompile.py alphabet.a alphabet.svg
+$(SVG_OUTFILE): $(SVG_SOURCEFILE)
+	$(SVG_COMPILER) $^ $@

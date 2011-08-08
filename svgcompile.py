@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from __future__ import division
-from BeautifulSoup import BeautifulStoneSoup
+from BeautifulSoup import BeautifulStoneSoup, Tag
 from sys import argv
 from math import ceil
 import re
@@ -10,29 +10,21 @@ class SVG(object):
    def __init__(self, infile):
       infile = open(infile, "r")
 
-      self._soup = BeautifulStoneSoup(infile.read(), selfClosingTags=["path", "rect"])
+      self._soup = BeautifulStoneSoup(infile.read(), selfClosingTags=["path", "rect", "metadata"])
 
       infile.close()
 
-      scale = self._soup.find("rect", {"id":"scale"})
-      self.scale = int(scale["width"])
-      scale.extract()
+      metadata = self._soup.find("metadata")
 
-      grid = self._soup.find("rect", {"id":"grid"})
-      self.cols = int(grid["width"])
-      grid.extract()
+      self.chrWidth = int(metadata["chrwidth"])
+      self.chrHeight = int(metadata["chrheight"])
+      self.hPadding = int(metadata["hpadding"]) 
+      self.vPadding = int(metadata["vpadding"]) 
+      self.cols = int(metadata["gridwidth"])
+      self.scale = int(metadata["scale"])
+      self.style = metadata["style"]
 
-      self.rows = int(ceil(len(self._soup.findAll("path")) / self.cols))
-
-      ratio = self._soup.find("rect", {"id":"ratio"})
-      self.chrWidth = int(ratio["width"])
-      self.chrHeight = int(ratio["height"])
-      ratio.extract()
-
-      padding = self._soup.find("rect", {"id":"padding"})
-      self.hPadding = int(padding["width"])
-      self.vPadding = int(padding["height"])
-      padding.extract()
+      self.rows = int(ceil(len(self._soup.findAll("char")) / self.cols))
 
       self.width = (self.chrWidth + self.hPadding) * self.cols
       self.width += self.hPadding
@@ -42,21 +34,41 @@ class SVG(object):
       self.height += self.vPadding
       self.height *= self.scale
 
-      svg = self._soup.find("svg")
-      svg["height"] = self.height
-      svg["width"] = self.width
-
    def outputData(self, outfile):
+
+      outSoup = BeautifulStoneSoup("", selfClosingTags=["path"])
+      outRoot = Tag(outSoup, "svg")
+      outRoot["xmlns"] = "http://www.w3.org/2000/svg"
+      outRoot["width"] = self.width
+      outRoot["height"] = self.height
+      outRoot["version"] = 1.1
+
+      outSoup.insert(0, outRoot)
+
+
+      for char in reversed(self._soup.findAll("char")):
+         path = Tag(outSoup, "path")
+         path["d"] = char["d"]
+         path["style"] = self.style
+         outRoot.insert(0, path)
+
+
+      svg_header = "<?xml version=\"1.0\" standalone=\"no\"?>\n"
+      svg_header += "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\""
+      svg_header += " \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
+
+      self.scaleAndGridAlphabet(outSoup)
+
       outfile = open(outfile, "w")
 
-      outfile.write(self._soup.prettify())
+      outfile.write(svg_header +  outSoup.prettify())
 
       outfile.close()
 
-   def scaleAndGridAlphabet(self):
+   def scaleAndGridAlphabet(self, soup):
       row, col = 0, 0
-      for i, path in enumerate(self._soup.findAll("path")):
-         if(col > self.cols):
+      for i, path in enumerate(soup.findAll("path")):
+         if(col >= self.cols):
             col = 0
             row += 1
 
@@ -91,21 +103,7 @@ def main(argv):
 
    svg = SVG(infile)
 
-   svg.scaleAndGridAlphabet()
-
    svg.outputData(outfile)
-
-   #infile = open(infile, "r")
-   #outfile = open(outfile, "w")
-#
-   #soup = BeautifulStoneSoup(infile.read(), selfClosingTags=["path", "rect"])
-#
-   #print repr(soup)
-#
-   #for i, path in enumerate(soup.findAll("path")):
-      #path["d"] = scaleAndOffsetData(path["d"], 1, 3, 5)
-   #
-
 
 if __name__ == "__main__":
    main(argv[1:])
